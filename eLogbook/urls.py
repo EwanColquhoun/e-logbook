@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from logbook.views import logbookMain
+from logbook.views import logbookMain, addFlight
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', logbookMain, name='home')
+    path('', logbookMain, name='home'),
+    path('add', addFlight, name='addFlight')
 ]

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
-    <title>eLogbook</title>
+    <title>eLogbook|Add Flight</title>
 </head>
 <body>
     <!-- navbar -->
@@ -23,23 +23,18 @@
         </div>
     </nav>
 
-    <div class="container pages">
-        <div class="col s12">
-            <table>
-                
-                {% for flight in flights %}
-                <tr>
-                    <td>{{ flight.aircraft }}</td>
-                    <td>{{ flight.captain }}</td>
-                    <td>{{ flight.departure }}</td>
-                    <td>{{ flight.destination }}</td>
-                    <td>{{ flight.notes }}</td>
-                </tr>
+    <h1>Add a New Record</h1>
+    <form action="add" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <p>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+            </p>   
+        </div> 
+    </form>
 
-                {% endfor %}
-            </table>
-        </div>
-    </div>
+    
   
 
     <!-- JavaScript Bundle with Popper -->
