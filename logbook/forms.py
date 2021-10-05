@@ -11,5 +11,5 @@ class NewFlight(forms.ModelForm):
         model = Flights
         fields = fields = '__all__'
         widgets = {
-            'date': DateInput(),
+            'date': DateInput()
         }

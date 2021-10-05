@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import NewFlight
 from .models import Flights
 
@@ -24,3 +24,31 @@ def addFlight(request):
         'form': form
     }
     return render(request, "logbook/form.html", context)
+
+
+def editFlight(request, flight_id):
+    flight = get_object_or_404(Flights, id=flight_id)
+    if request.method == 'POST':
+        form = NewFlight(request.POST, instance=flight)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    form = NewFlight(instance=flight)
+    context = {
+        'form': form
+    }
+    return render(request, "logbook/edit.html", context)
+
+
+def deleteFlight(request, flight_id):
+    flight = get_object_or_404(Flights, id=flight_id)
+    if request.method == 'POST':
+        form = NewFlight(request.POST, instance=flight)
+        if form.is_valid():
+            form.delete()
+            return redirect('home')
+    form = NewFlight(instance=flight)
+    context = {
+        'form': form
+    }
+    return render(request, "logbook/edit.html", context)

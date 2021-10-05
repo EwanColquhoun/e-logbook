@@ -18,10 +18,10 @@ class Flights(models.Model):
     ]
     date = models.DateField(null=True)
     captain = models.CharField(max_length=25, default='', blank=False)
-    aircraft = models.CharField(max_length=16, choices=AIRCRAFT, default=B744, null=False, blank=False)
+    aircraft = models.CharField(max_length=5, choices=AIRCRAFT, default=B744)
     departure = models.CharField(max_length=5, default='', null=False, blank=False)
     destination = models.CharField(max_length=5, null=False, default='', blank=False)
     notes = models.CharField(max_length=50, default='')
 
     def __str__(self):
-        return self.id
+        return self.date
