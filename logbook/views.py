@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import NewFlight
 from .models import Flights
+from django.contrib import messages
 
 # Create your views here.
 
@@ -18,6 +19,7 @@ def addFlight(request):
         form = NewFlight(request.POST)
         if form.is_valid():
             form.save()
+            messages.info(request, 'New flight saved successfully!')
             return redirect('home')
     form = NewFlight()
     context = {

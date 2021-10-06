@@ -21,7 +21,8 @@ class Flights(models.Model):
     aircraft = models.CharField(max_length=5, choices=AIRCRAFT, default=B744)
     departure = models.CharField(max_length=5, default='', null=False, blank=False)
     destination = models.CharField(max_length=5, null=False, default='', blank=False)
+    duration = models.DecimalField(max_digits=4, decimal_places=2, default='0.0')
     notes = models.CharField(max_length=50, default='')
 
     def __str__(self):
-        return self.date
+        return self.date, self.departure

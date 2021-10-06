@@ -22,6 +22,14 @@
         </div>
     </nav>
 
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
     <div class="container">
         <h4>Add a New Record</h4>
 
