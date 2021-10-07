@@ -3,6 +3,7 @@ from .forms import NewFlight
 from .models import Flights
 from django.contrib import messages
 
+
 # Create your views here.
 
 
