@@ -17,11 +17,17 @@ from django.contrib import admin
 from django.urls import path, include
 from logbook.views import logbookMain, addFlight, editFlight, deleteFlight
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', logbookMain, name='home'),
+<<<<<<< HEAD
     path('add', addFlight, name='addFlight'),
     path('edit/<flight_id>', editFlight, name='editFlight'),
     path('delete/<flight_id>', deleteFlight, name='delete'),
     path('accounts/', include('allauth.urls')),
+=======
+    path('add/', addFlight, name='addFlight'),
+    path('edit/<flight_id>', editFlight, name='editFlight'),
+>>>>>>> 407bcd83348f8d70516526e65ccd6963b43fd917
 ]
