@@ -8,8 +8,10 @@ from django.contrib import messages
 
 def logbookMain(request):
     flights = Flights.objects.all()
+    current_user = request.user
     context = {
-        'flights': flights
+        'flights': flights,
+        'current_user': current_user,
     }
     return render(request, "logbook/index.html", context)
 
@@ -19,7 +21,7 @@ def addFlight(request):
         form = NewFlight(request.POST)
         if form.is_valid():
             form.save()
-            messages.info(request, 'New flight saved successfully!')
+            # messages.info(request, 'New flight saved successfully!')
             return redirect('home')
     form = NewFlight()
     context = {
@@ -37,20 +39,13 @@ def editFlight(request, flight_id):
             return redirect('home')
     form = NewFlight(instance=flight)
     context = {
-        'form': form
+        'form': form,
+        'flight': flight,
     }
     return render(request, "logbook/edit.html", context)
 
 
 def deleteFlight(request, flight_id):
     flight = get_object_or_404(Flights, id=flight_id)
-    if request.method == 'POST':
-        form = NewFlight(request.POST, instance=flight)
-        if form.is_valid():
-            form.delete()
-            return redirect('home')
-    form = NewFlight(instance=flight)
-    context = {
-        'form': form
-    }
-    return render(request, "logbook/edit.html", context)
+    flight.delete()
+    return redirect('home')

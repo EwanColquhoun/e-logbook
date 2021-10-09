@@ -33,3 +33,22 @@ select {
     left: 50%;
     background-color: aqua;
 }
+
+#changelist-search {
+    padding-top: 10px;
+}
+
+#searchbar {
+    border: 2px solid grey;
+    box-shadow: none;
+}
+
+::placeholder {
+    color: black;
+    opacity: 0.5;
+}
+
+#edit-flight-form {
+    float: none;
+    
+}

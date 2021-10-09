@@ -16,8 +16,8 @@
         <div class="nav-wrapper blue darken-4">
         <a href="#!" class="brand-logo center">eLogbook</a>
         <ul class="left hide-on-med-and-down">
-            <li><a href="/">Home</a></li>
-            <li><a href="add">New Flight</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'addFlight' %}">New Flight</a></li>
         </ul>
         </div>
     </nav>
@@ -31,11 +31,13 @@
     {% endif %}
 
     <div class="container">
-        <h4>Add a New Record</h4>
+        <h4 class="center-align">Add a New Record</h4>
 
         <div class="row">
-            <div class="col s12 m4 l8">
+            <div id="edit-flight-container">
+                
                 <form id="edit-flight-form" action="add" method="POST">
+                    
                     {% csrf_token %}
                     {{ form.as_p }}
                     <div>

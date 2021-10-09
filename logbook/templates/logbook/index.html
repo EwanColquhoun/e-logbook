@@ -17,8 +17,8 @@
         <div class="nav-wrapper blue darken-4">
         <a href="#!" class="brand-logo center">eLogbook</a>
         <ul class="left hide-on-med-and-down">
-            <li><a href="/">Home</a></li>
-            <li><a href="add">New Flight</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'addFlight' %}">New Flight</a></li>
             {% if user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
@@ -34,20 +34,24 @@
         </ul>
         </div>
     </nav>
-    <!-- 
-    <div class="col">
-        <div id="toolbar">
-            <form id="changelist-search" method="get">
-                <div>
-                    <label for="searchbar"><img src="/static/admin/img/search.svg" alt="Search"></label>
-                    <input type="text" size="40" name="q" value="" id="searchbar" autofocus="">
-                    <input type="submit" value="Search">
-                </div>
-            </form>
+    
+    <div class="row">
+        <div class="col s4">
+            <div id="toolbar">
+                <form id="changelist-search" method="get">
+                
+                    <!-- <label for="searchbar"><img src="/static/admin/img/search.svg" alt="Search"></label> -->
+                    <input type="text" size="40" name="q" value="" id="searchbar" placeholder="Search for flights here.." autofocus="">
+                    <input class="btn btn-small deep-orange lighten-1" type="submit" value="Search">
+                
+                </form>
+            </div>
         </div>
-    </div> -->
+    </div>
+
     <div class="container pages grey lighten-4">
         <div class="col s12">
+            {% if user.is_authenticated %}
             <table>
                 
                 {% for flight in flights %}
@@ -62,9 +66,14 @@
                     <td><a href="/edit/{{ flight.id }}" class="btn-small btn-floating red lighten-2">
                         <span class="material-icons">edit</span></a></td>
                 </tr>
-
+                {% empty %}
+                <tr>You have no flights to display.</tr>
                 {% endfor %}
             </table>
+            {% else %}
+            <strong><p class="center-align">You are not signed-in. Please <a href="{% url 'account_signup' %}">register</a> or 
+                <a href="{% url 'account_login' %}">sign-in</a> to view your flights! </p></strong>
+            {% endif %}
         </div>
     </div>
   

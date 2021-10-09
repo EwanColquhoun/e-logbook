@@ -27,8 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-SITE_ID = 1
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,6 +43,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'logbook',
 ]
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

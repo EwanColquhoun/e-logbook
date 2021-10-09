@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from logbook.views import logbookMain, addFlight, editFlight
+from logbook.views import logbookMain, addFlight, editFlight, deleteFlight
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', logbookMain, name='home'),
     path('add', addFlight, name='addFlight'),
     path('edit/<flight_id>', editFlight, name='editFlight'),
+    path('delete/<flight_id>', deleteFlight, name='delete'),
     path('accounts/', include('allauth.urls')),
 ]

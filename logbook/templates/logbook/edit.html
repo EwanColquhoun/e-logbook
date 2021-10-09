@@ -16,8 +16,8 @@
         <div class="nav-wrapper blue darken-4">
         <a href="#!" class="brand-logo center">eLogbook</a>
         <ul class="left hide-on-med-and-down">
-            <li><a href="/">Home</a></li>
-            <li><a href="add">New Flight</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'addFlight' %}">New Flight</a></li>
         </ul>
         </div>
     </nav>
@@ -33,7 +33,7 @@
                     <div>
                         <p>
                             <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Update Flight</button>
-                            <a href="deleteFlight"><button class="btn waves-effect waves-light red darken-4" type="submit" name="action">Delete Flight</button></a>
+                            <a class="btn waves-effect waves-light red darken-4" href="/delete/{{ flight.id }}">Delete Flight</a>
                         </p>   
                     </div> 
                 </form>
