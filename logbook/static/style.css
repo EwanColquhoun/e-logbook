@@ -52,3 +52,7 @@ select {
     float: none;
     
 }
+
+.table-headings td {
+    font-weight: 600;
+}

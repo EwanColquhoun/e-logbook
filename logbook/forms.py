@@ -16,11 +16,13 @@ class NewFlight(forms.ModelForm):
         fields = fields = '__all__'
         widgets = {
             'date': DateInput(),
-            
         }
 
 
 class NewBooking(forms.ModelForm):
     class Meta:
-        model: Booking
-        fields = ('date', 'aircraft', 'name', 'email')
+        model = Booking
+        fields = ('slot', 'date', 'aircraft', 'name', 'email', 'notes')
+        widgets = {
+            'date': DateInput(),
+        }

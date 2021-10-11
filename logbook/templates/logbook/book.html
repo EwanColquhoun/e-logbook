@@ -2,6 +2,24 @@
 
 {% block content %}
 
-<h1>Well done bookings!</h1>
+<div class="container">
+    <h4 class="center-align">Add a New Booking</h4>
+
+    <div class="row">
+        <div id="edit-flight-container">
+            
+            <form id="edit-flight-form" action='book' method="POST">
+                
+                {% csrf_token %}
+                {{ bookingForm.as_p }}
+                <div>
+                    <p>
+                        <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Submit</button>
+                    </p>   
+                </div> 
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

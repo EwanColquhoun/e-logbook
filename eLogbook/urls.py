@@ -23,7 +23,9 @@ urlpatterns = [
     path('', views.logbookMain, name='home'),
     path('add', views.addFlight, name='addFlight'),
     path('edit/<flight_id>', views.editFlight, name='editFlight'),
+    path('edit-booking/<booking_id>', views.editBooking, name='editBooking'),
     path('delete/<flight_id>', views.deleteFlight, name='delete'),
+    path('delete-booking/<booking_id>', views.deleteBooking, name='deleteBooking'),
     path('accounts/', include('allauth.urls')),
     path('book', views.bookFlight, name='book'),
 ]

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import NewFlight
-from .models import Flights
+from .forms import NewFlight, NewBooking
+from .models import Flights, Slots, Booking
 from django.contrib import messages
 
 
@@ -10,9 +10,11 @@ from django.contrib import messages
 def logbookMain(request):
     flights = Flights.objects.all()
     current_user = request.user
+    bookings = Booking.objects.all()
     context = {
         'flights': flights,
         'current_user': current_user,
+        'bookings': bookings,
     }
     return render(request, "logbook/index.html", context)
 
@@ -53,4 +55,35 @@ def deleteFlight(request, flight_id):
 
 
 def bookFlight(request):
-    return render(request, 'logbook/book.html')
+    if request.method == 'POST':
+        form = NewBooking(request.POST)
+        if form.is_valid():
+            form.save()
+            # messages.info(request, 'New flight saved successfully!')
+            return redirect('home')
+    form = NewBooking()
+    context = {
+        'bookingForm': form
+    }
+    return render(request, "logbook/book.html", context)
+
+
+def editBooking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    if request.method == 'POST':
+        form = NewBooking(request.POST, instance=booking)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    form = NewBooking(instance=booking)
+    context = {
+        'bookingForm': form,
+        'booking': booking,
+    }
+    return render(request, "logbook/edit-booking.html", context)
+
+
+def deleteBooking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    booking.delete()
+    return redirect('home')

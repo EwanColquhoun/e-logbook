@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Flights, Booking
+from .models import Flights, Booking, Slots
 # Register your models here.
 
 
@@ -11,9 +11,15 @@ class FlightsAdmin(admin.ModelAdmin):
     search_fields = ['captain', 'date', 'destination', 'departure', 'aircraft']
 
 
-
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
 
     list_display = ('date', 'name', 'aircraft', 'email')
     list_filter = ('date', 'name', 'aircraft', 'email')
+
+
+@admin.register(Slots)
+class SlotAdmin(admin.ModelAdmin):
+
+    list_display = ('slot',)
+    list_filter = ('slot',)
