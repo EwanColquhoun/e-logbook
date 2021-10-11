@@ -13,13 +13,32 @@
                     {{ bookingForm.as_p }}
                     <div>
                         <p>
-                            <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Update Booking</button>
-                            <a class="btn waves-effect waves-light red darken-4" href="/delete-booking/{{ booking.id }}">Delete Booking</a>
+                            <button class="btn btn-success" type="submit" name="action">Update Booking</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Delete
+                              </button>
                         </p>   
                     </div> 
                 </form>
             </div>
         </div>
     </div>
-  
+
+    <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">WARNING! </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to delele the booking for {{ booking.date }}.?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="close-btn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a href="/delete-booking/{{ booking.id }}" type="button" class="btn btn-danger">Delete Flight</a>
+            </div>
+          </div>
+        </div>
+      </div>
 {% endblock %}

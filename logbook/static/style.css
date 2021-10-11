@@ -1,18 +1,25 @@
 body {
-    background: linear-gradient(rgb(184, 182, 182), #fff) no-repeat center center;
+    background-image: linear-gradient(to bottom, #e9e8ff, #d6f0ff, #c4f7ff, #c3fcf1, #d7fdd9);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
     font: 14px sans-serif;
     padding: 20px;
 }
 
 .pages {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    margin: 26px auto 0;
+    margin: 60px auto 0;
     max-width: 90%;
     max-height: 80vh;
     overflow-y: scroll;
     padding: 24px;
     position: relative;
     width: 80%;
+}
+
+li a {
+    text-decoration: none;
 }
 
 label {
@@ -55,4 +62,30 @@ select {
 
 .table-headings td {
     font-weight: 600;
+}
+
+.btn-secondary {
+    background-color: grey;
+}
+
+.btn-danger {
+    background-color: red;
+}
+
+.modal {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+#close-btn {
+    margin-right: 5px;
+}
+
+.table-icon {
+    color: grey
+}
+
+.table-icon:hover {
+    color: rgb(48, 172, 48);
 }

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import NewFlight, NewBooking
-from .models import Flights, Slots, Booking
+from .models import Flights, Booking
 from django.contrib import messages
 
 
@@ -10,7 +10,7 @@ from django.contrib import messages
 def logbookMain(request):
     flights = Flights.objects.all()
     current_user = request.user
-    bookings = Booking.objects.all()
+    bookings = Booking.objects.all().order_by('date')
     context = {
         'flights': flights,
         'current_user': current_user,
@@ -24,7 +24,7 @@ def addFlight(request):
         form = NewFlight(request.POST)
         if form.is_valid():
             form.save()
-            # messages.info(request, 'New flight saved successfully!')
+            messages.add_message(request, messages.SUCCESS, 'Your flight has been added successfully. Thank you.')
             return redirect('home')
     form = NewFlight()
     context = {
@@ -51,6 +51,7 @@ def editFlight(request, flight_id):
 def deleteFlight(request, flight_id):
     flight = get_object_or_404(Flights, id=flight_id)
     flight.delete()
+    messages.add_message(request, messages.SUCCESS, 'Your flight has been deleted successfully. Thank you.')
     return redirect('home')
 
 
@@ -59,7 +60,7 @@ def bookFlight(request):
         form = NewBooking(request.POST)
         if form.is_valid():
             form.save()
-            # messages.info(request, 'New flight saved successfully!')
+            messages.add_message(request, messages.SUCCESS, 'Your booking has been added successfully. Thank you.')
             return redirect('home')
     form = NewBooking()
     context = {
@@ -86,4 +87,5 @@ def editBooking(request, booking_id):
 def deleteBooking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     booking.delete()
+    messages.add_message(request, messages.SUCCESS, 'Your booking has been deleted successfully. Thank you.')
     return redirect('home')
