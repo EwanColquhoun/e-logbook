@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import NewFlight, NewBooking
 from .models import Flights, Booking
+from calender.forms import NewEvent
+from calender.models import Events
 from django.contrib import messages
-
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -92,8 +94,10 @@ def deleteBooking(request, booking_id):
 
 
 def calender(request):
-    bookings = Booking.objects.all()
+    form = NewEvent()
+    all_events = Events.objects.all()
     context = {
-        'bookings': bookings
+        'form': form,
+        'events': all_events,
     }
     return render(request, "logbook/calender.html", context)

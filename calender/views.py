@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
-# from .forms import NewFlight, NewBooking
-from calender.models import Events
+from .forms import NewEvent
+from .models import Events
 # from django.contrib import messages
 from django.http import JsonResponse
 
 
 def calendar(request):
     all_events = Events.objects.all()
+    form = NewEvent()
     context = {
         "events": all_events,
+        "form": form
     }
-    return render(request, 'calendar.html', context)
+    return render(request, 'calender.html', context)
 
 
 def all_events(request):                                                                                                 
@@ -22,8 +24,7 @@ def all_events(request):
             'id': event.id,                                                                                              
             'start': event.start.strftime("%m/%d/%Y, %H:%M:%S"),                                                         
             'end': event.end.strftime("%m/%d/%Y, %H:%M:%S"),                                                             
-        })                                                                                                               
-                                                                                                                     
+        })                                                                                                                                                                                                                         
     return JsonResponse(out, safe=False)  
 
 

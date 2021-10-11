@@ -1,5 +1,6 @@
 from django import forms
 from .models import Flights, Booking
+from django.contrib.admin import widgets
 
 
 class DateInput(forms.DateInput):

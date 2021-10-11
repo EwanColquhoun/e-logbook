@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from logbook import views
-from calender.views import calendar, add_event, update, remove, all_events
+from calender.views import add_event, update, remove, all_events
 
 
 urlpatterns = [

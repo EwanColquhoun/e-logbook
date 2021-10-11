@@ -8,13 +8,13 @@
     <div class="row">
         <div id="edit-flight-container">
             
-            <form id="edit-flight-form" action='book' method="POST">
+            <form id="booking-form" action='book' method="POST">
                 
                 {% csrf_token %}
                 {{ bookingForm.as_p }}
                 <div>
                     <p>
-                        <button class="btn btn-primary" type="submit" name="action">Submit</button>
+                        <button class="btn btn-primary" type="submit" id="booking-button" name="action">Submit</button>
                     </p>   
                 </div> 
             </form>

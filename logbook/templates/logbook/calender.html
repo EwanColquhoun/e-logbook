@@ -8,22 +8,20 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-4">
-            <table>
-            {% for booking in bookings %}
-                <tr>
-                    <td>{{ booking.slot }}</td>
-                    <td>{{ booking.aircraft }}</td>
-                    <td>{{ booking.name }}</td>
-                </tr>
+    <div id="external-events" class="row">
+        <div class="col-8 overflow-scroll event-height m-5">
+            {% for event in events %}
+            <!-- <div id='draggable-el' class="btn btn-primary" data-event='{ "title": "{{ event.name }}", "duration": "{{ event.duration }}" }'>Drag {{ event.name }} to Calendar</div> -->
+            <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                <div class='fc-event-main' data-event='{ "title": "{{ event.name }}", "duration": "{{ event.duration }}" }'>{{ event.name }}</div>
+            </div>
             {% endfor %}
-            </table>
-        </div>
-        <div class="col-8">
-            <div id='calendar'></div>
+            
         </div>
     </div>
+</div>
+<div id="calendar-container" class="container">
+    <div id="calendar"></div>
 </div>
 
 
