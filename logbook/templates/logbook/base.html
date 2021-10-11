@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+    <title>eLogbook</title>
+</head>
+<body>
+    <!-- navbar -->
+    <nav>
+        <div class="nav-wrapper blue darken-4">
+        <a href="#!" class="brand-logo center">eLogbook</a>
+        <ul class="left hide-on-med-and-down">
+            <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>    
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'book' %}">Bookings</a>
+            </li>
+            <li><a href="{% url 'addFlight' %}">New Flight</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+            </li>
+            {% endif %}
+        </ul>
+        </div>
+    </nav>
+    
+    {% block content %}
+
+    {% endblock content %}
+
+    <!-- JavaScript Bundle with Popper -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script> -->
+</body>
+</html>

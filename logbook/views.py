@@ -50,3 +50,7 @@ def deleteFlight(request, flight_id):
     flight = get_object_or_404(Flights, id=flight_id)
     flight.delete()
     return redirect('home')
+
+
+def bookFlight(request):
+    return render(request, 'logbook/book.html')

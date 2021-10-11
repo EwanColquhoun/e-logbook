@@ -1,59 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS only -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
-    <title>eLogbook|Add Flight</title>
-</head>
-<body>
-    <!-- navbar -->
-    <nav>
-        <div class="nav-wrapper blue darken-4">
-        <a href="#!" class="brand-logo center">eLogbook</a>
-        <ul class="left hide-on-med-and-down">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'addFlight' %}">New Flight</a></li>
-        </ul>
-        </div>
-    </nav>
 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li class="{{ message.tags }}">{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+{% extends "logbook/base.html" %}
 
-    <div class="container">
-        <h4 class="center-align">Add a New Record</h4>
+{% block content %}
 
-        <div class="row">
-            <div id="edit-flight-container">
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<div class="container">
+    <h4 class="center-align">Add a New Record</h4>
+
+    <div class="row">
+        <div id="edit-flight-container">
+            
+            <form id="edit-flight-form" action="add" method="POST">
                 
-                <form id="edit-flight-form" action="add" method="POST">
-                    
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <div>
-                        <p>
-                            <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Submit</button>
-                        </p>   
-                    </div> 
-                </form>
-            </div>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div>
+                    <p>
+                        <button class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Submit</button>
+                    </p>   
+                </div> 
+            </form>
         </div>
     </div>
+</div>
 
-    
-  
-
-    <!-- JavaScript Bundle with Popper -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script> -->
-</body>
-</html>
+{% endblock %}
