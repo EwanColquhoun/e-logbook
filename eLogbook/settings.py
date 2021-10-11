@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'logbook',
+    'calender',
 ]
 
 SITE_ID = 1

@@ -1,0 +1,30 @@
+{% extends "logbook/base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 center-align"><h2>Calender</h2></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <table>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.slot }}</td>
+                    <td>{{ booking.aircraft }}</td>
+                    <td>{{ booking.name }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+        <div class="col-8">
+            <div id='calendar'></div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -89,3 +89,11 @@ def deleteBooking(request, booking_id):
     booking.delete()
     messages.add_message(request, messages.SUCCESS, 'Your booking has been deleted successfully. Thank you.')
     return redirect('home')
+
+
+def calender(request):
+    bookings = Booking.objects.all()
+    context = {
+        'bookings': bookings
+    }
+    return render(request, "logbook/calender.html", context)

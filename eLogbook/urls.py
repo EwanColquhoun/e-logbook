@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from logbook import views
+from calender.views import calendar, add_event, update, remove, all_events
 
 
 urlpatterns = [
@@ -28,4 +29,9 @@ urlpatterns = [
     path('delete-booking/<booking_id>', views.deleteBooking, name='deleteBooking'),
     path('accounts/', include('allauth.urls')),
     path('book', views.bookFlight, name='book'),
+    path('calender', views.calender, name='calender'),
+    path('add_event', add_event, name='add_event'),
+    path('update', update, name='update'),
+    path('remove', remove, name='remove'),
+    path('all_events', all_events, name='all_events')
 ]
