@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User  #Used to get the default users model from django
 
 # Create your models here.
 
@@ -27,3 +28,19 @@ class Flights(models.Model):
 
     def __str__(self):
         return self.captain
+
+
+class Booking(models.Model):
+    TRAINERS = [
+        ('PA-28', 'Piper Warrier'),
+        ('C150', 'Cessna 150'),
+        ('Cub', 'Piper Cub'),    
+    ]
+
+    name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="flight_booking")
+    email = models.ForeignKey(User, on_delete=models.CASCADE)
+    aircraft = models.CharField(max_length=5, choices=TRAINERS, default='PA-28')
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name

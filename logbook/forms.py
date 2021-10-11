@@ -1,5 +1,5 @@
 from django import forms
-from .models import Flights
+from .models import Flights, Booking
 
 
 class DateInput(forms.DateInput):
@@ -18,3 +18,9 @@ class NewFlight(forms.ModelForm):
             'date': DateInput(),
             
         }
+
+
+class NewBooking(forms.ModelForm):
+    class Meta:
+        model: Booking
+        fields = ('date', 'aircraft', 'name', 'email')
